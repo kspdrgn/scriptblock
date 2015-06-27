@@ -297,6 +297,19 @@ function addButtonsFromUrlList(urlList, urlListType, topDomain, topDomainIsWhite
                 labelAlwaysAllow.innerText = "Allow";
                 aRadioSetDiv.appendChild(labelAlwaysAllow);
 
+                var rbTempAllow = document.createElement("input");
+                rbTempAllow.type = "radio";
+                rbTempAllow.id = randomID();
+                rbTempAllow.name = rbGroupName;
+                rbTempAllow.setAttribute("data-url", currBlockedURL);
+                rbTempAllow.onclick = tempAllowSite;
+                if (urlListType === URL_LIST_TYPE.tempAllowed) rbTempAllow.checked = true;
+                aRadioSetDiv.appendChild(rbTempAllow);
+                var labelTempAllow = document.createElement("label");
+                labelTempAllow.setAttribute("for", rbTempAllow.id);
+                labelTempAllow.innerText = "Temp";
+                aRadioSetDiv.appendChild(labelTempAllow);
+
                 var rbBlock = document.createElement("input");
                 rbBlock.type = "radio";
                 rbBlock.id = randomID();
@@ -328,19 +341,6 @@ function addButtonsFromUrlList(urlList, urlListType, topDomain, topDomainIsWhite
                     labelSameSite.innerText = "Same";
                     aRadioSetDiv.appendChild(labelSameSite);
                 }
-
-                var rbTempAllow = document.createElement("input");
-                rbTempAllow.type = "radio";
-                rbTempAllow.id = randomID();
-                rbTempAllow.name = rbGroupName;
-                rbTempAllow.setAttribute("data-url", currBlockedURL);
-                rbTempAllow.onclick = tempAllowSite;
-                if (urlListType === URL_LIST_TYPE.tempAllowed) rbTempAllow.checked = true;
-                aRadioSetDiv.appendChild(rbTempAllow);
-                var labelTempAllow = document.createElement("label");
-                labelTempAllow.setAttribute("for", rbTempAllow.id);
-                labelTempAllow.innerText = "Temp";
-                aRadioSetDiv.appendChild(labelTempAllow);
 
                 $(aRadioSetDiv).buttonset();
 
